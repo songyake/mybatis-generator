@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.GmWechatUserMapper">
+  <resultMap id="BaseResultMap" type="com.gm.GmWechatUser">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="wx_id" jdbcType="VARCHAR" property="wxId" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="unionid" jdbcType="VARCHAR" property="unionid" />
+    <result column="wx_tagid" jdbcType="INTEGER" property="wxTagid" />
+    <result column="nickn_name" jdbcType="VARCHAR" property="nicknName" />
+    <result column="sex" jdbcType="CHAR" property="sex" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="headimg_url" jdbcType="VARCHAR" property="headimgUrl" />
+    <result column="groupid" jdbcType="INTEGER" property="groupid" />
+    <result column="subscribe" jdbcType="BIT" property="subscribe" />
+    <result column="subscribe_scene" jdbcType="VARCHAR" property="subscribeScene" />
+    <result column="subscribe_time" jdbcType="TIMESTAMP" property="subscribeTime" />
+    <result column="unsubscribe_time" jdbcType="TIMESTAMP" property="unsubscribeTime" />
+    <result column="qr_scene" jdbcType="INTEGER" property="qrScene" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, app_id, wx_id, open_id, unionid, wx_tagid, nickn_name, sex, city, province, country, 
+    headimg_url, groupid, subscribe, subscribe_scene, subscribe_time, unsubscribe_time, 
+    qr_scene, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gm_wechat_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.gm.GmWechatUser">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gm_wechat_user (app_id, wx_id, open_id, 
+      unionid, wx_tagid, nickn_name, 
+      sex, city, province, country, 
+      headimg_url, groupid, subscribe, 
+      subscribe_scene, subscribe_time, unsubscribe_time, 
+      qr_scene, create_time)
+    values (#{appId,jdbcType=VARCHAR}, #{wxId,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, 
+      #{unionid,jdbcType=VARCHAR}, #{wxTagid,jdbcType=INTEGER}, #{nicknName,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=CHAR}, #{city,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, 
+      #{headimgUrl,jdbcType=VARCHAR}, #{groupid,jdbcType=INTEGER}, #{subscribe,jdbcType=BIT}, 
+      #{subscribeScene,jdbcType=VARCHAR}, #{subscribeTime,jdbcType=TIMESTAMP}, #{unsubscribeTime,jdbcType=TIMESTAMP}, 
+      #{qrScene,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gm.GmWechatUser">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gm_wechat_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="wxId != null">
+        wx_id,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+      <if test="unionid != null">
+        unionid,
+      </if>
+      <if test="wxTagid != null">
+        wx_tagid,
+      </if>
+      <if test="nicknName != null">
+        nickn_name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="country != null">
+        country,
+      </if>
+      <if test="headimgUrl != null">
+        headimg_url,
+      </if>
+      <if test="groupid != null">
+        groupid,
+      </if>
+      <if test="subscribe != null">
+        subscribe,
+      </if>
+      <if test="subscribeScene != null">
+        subscribe_scene,
+      </if>
+      <if test="subscribeTime != null">
+        subscribe_time,
+      </if>
+      <if test="unsubscribeTime != null">
+        unsubscribe_time,
+      </if>
+      <if test="qrScene != null">
+        qr_scene,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="wxId != null">
+        #{wxId,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="unionid != null">
+        #{unionid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxTagid != null">
+        #{wxTagid,jdbcType=INTEGER},
+      </if>
+      <if test="nicknName != null">
+        #{nicknName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="headimgUrl != null">
+        #{headimgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="groupid != null">
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="subscribe != null">
+        #{subscribe,jdbcType=BIT},
+      </if>
+      <if test="subscribeScene != null">
+        #{subscribeScene,jdbcType=VARCHAR},
+      </if>
+      <if test="subscribeTime != null">
+        #{subscribeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unsubscribeTime != null">
+        #{unsubscribeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qrScene != null">
+        #{qrScene,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gm.GmWechatUser">
+    update gm_wechat_user
+    <set>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="wxId != null">
+        wx_id = #{wxId,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="unionid != null">
+        unionid = #{unionid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxTagid != null">
+        wx_tagid = #{wxTagid,jdbcType=INTEGER},
+      </if>
+      <if test="nicknName != null">
+        nickn_name = #{nicknName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="headimgUrl != null">
+        headimg_url = #{headimgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="groupid != null">
+        groupid = #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="subscribe != null">
+        subscribe = #{subscribe,jdbcType=BIT},
+      </if>
+      <if test="subscribeScene != null">
+        subscribe_scene = #{subscribeScene,jdbcType=VARCHAR},
+      </if>
+      <if test="subscribeTime != null">
+        subscribe_time = #{subscribeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unsubscribeTime != null">
+        unsubscribe_time = #{unsubscribeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qrScene != null">
+        qr_scene = #{qrScene,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gm.GmWechatUser">
+    update gm_wechat_user
+    set app_id = #{appId,jdbcType=VARCHAR},
+      wx_id = #{wxId,jdbcType=VARCHAR},
+      open_id = #{openId,jdbcType=VARCHAR},
+      unionid = #{unionid,jdbcType=VARCHAR},
+      wx_tagid = #{wxTagid,jdbcType=INTEGER},
+      nickn_name = #{nicknName,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      city = #{city,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      headimg_url = #{headimgUrl,jdbcType=VARCHAR},
+      groupid = #{groupid,jdbcType=INTEGER},
+      subscribe = #{subscribe,jdbcType=BIT},
+      subscribe_scene = #{subscribeScene,jdbcType=VARCHAR},
+      subscribe_time = #{subscribeTime,jdbcType=TIMESTAMP},
+      unsubscribe_time = #{unsubscribeTime,jdbcType=TIMESTAMP},
+      qr_scene = #{qrScene,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
